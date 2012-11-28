@@ -6,25 +6,15 @@ import ChristmasMod.client.ClientProxy;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
-import net.minecraftforge.client.MinecraftForgeClient;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.ServerStarting;
-import cpw.mods.fml.common.Mod.ServerStopping;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.TickType;
-import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.Mod.Init;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.event.FMLServerStoppingEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.common.SidedProxy;
-import net.minecraftforge.common.EnumHelper;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.src.Block;
+import net.minecraft.src.Item;
+import net.minecraftforge.client.*;
+import cpw.mods.fml.common.Mod.*;
+import cpw.mods.fml.common.network.*;
+import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.registry.*;
+import cpw.mods.fml.common.*;
+import net.minecraftforge.common.*;
 
 @Mod(modid = "ChristmasMod", name = "ChristmasMod", version = "0.3")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -96,34 +86,34 @@ public class ChristmasMod {
 
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 
-		Star = (BlockStar)(new BlockStar(162, 17)).setHardness(0.0F).setLightValue(.7F).setStepSound(Block.soundClothFootstep).setBlockName("Star");
+		Star = (BlockStar)(new BlockStar(Config.starID, 17)).setHardness(0.0F).setLightValue(.7F).setStepSound(Block.soundClothFootstep).setBlockName("Star");
 
-		Chocolate = new ItemCandy(5005, 4, true).setIconCoord(16, 0).setItemName("Chocolate");
-		CandyCane = new ItemCandy(5006, 8, true).setIconCoord(18, 0).setItemName("CandyCane");
-		Candy = new ItemCandy(5007, 2, true).setIconCoord(17, 0).setItemName("Candy");
-		Dough = new ItemDough(5008).setIconIndex(20).setItemName("Dough");
-		Gingerbread = new ItemGingerbread(5009, 2, true).setIconCoord(19, 0).setItemName("GingerBread");
+		Chocolate = new ItemCandy(Config.chocoID, 4, true).setIconCoord(16, 0).setItemName("Chocolate");
+		CandyCane = new ItemCandy(Config.caneID, 8, true).setIconCoord(18, 0).setItemName("CandyCane");
+		Candy = new ItemCandy(Config.candyID, 2, true).setIconCoord(17, 0).setItemName("Candy");
+		Dough = new ItemDough(Config.doughID).setIconIndex(20).setItemName("Dough");
+		Gingerbread = new ItemGingerbread(Config.gingerID, 2, true).setIconCoord(19, 0).setItemName("GingerBread");
 
-		PresentS = new BlockPresentS(155).setHardness(3F).setStepSound(Block.soundStoneFootstep).setBlockName("PresentS");
-		PresentM = new BlockPresentM(156).setHardness(3F).setStepSound(Block.soundStoneFootstep).setBlockName("PresentM");
-		PresentB = new BlockPresentB(157).setHardness(3F).setStepSound(Block.soundStoneFootstep).setBlockName("PresentB");
-		Candle = (new BlockCandle(161, 16)).setHardness(0.0F).setLightValue(0.9375F).setStepSound(Block.soundWoodFootstep).setBlockName("Candle").setRequiresSelfNotify();
+		PresentS = new BlockPresentS(Config.smPresID).setHardness(3F).setStepSound(Block.soundStoneFootstep).setBlockName("PresentS");
+		PresentM = new BlockPresentM(Config.mdPresID).setHardness(3F).setStepSound(Block.soundStoneFootstep).setBlockName("PresentM");
+		PresentB = new BlockPresentB(Config.lgPresID).setHardness(3F).setStepSound(Block.soundStoneFootstep).setBlockName("PresentB");
+		Candle = (new BlockCandle(Config.candleID, 16)).setHardness(0.0F).setLightValue(0.9375F).setStepSound(Block.soundWoodFootstep).setBlockName("Candle").setRequiresSelfNotify();
 
-		Light = new ItemLight(5000).setIconIndex(0).setItemName("Light");
-		Lights = new BlockLights(151, 3).setHardness(0.2F).setLightValue(0.8F).setStepSound(Block.soundWoodFootstep).setBlockName("Lights");
-		GLight = new BlockGLight(152, 10).setHardness(0.2F).setLightValue(0.8F).setStepSound(Block.soundWoodFootstep).setBlockName("GLight");
-		BLight = new BlockBLight(153, 11).setHardness(0.2F).setLightValue(0.8F).setStepSound(Block.soundWoodFootstep).setBlockName("BLight");
-		RLight = new BlockRLight(154, 12).setHardness(0.2F).setLightValue(0.8F).setStepSound(Block.soundWoodFootstep).setBlockName("RLight");
+		Light = new ItemLight(Config.lightID).setIconIndex(0).setItemName("Light");
+		Lights = new BlockLights(Config.lightsID, 3).setHardness(0.2F).setLightValue(0.8F).setStepSound(Block.soundWoodFootstep).setBlockName("Lights");
+		GLight = new BlockGLight(Config.gLightID, 10).setHardness(0.2F).setLightValue(0.8F).setStepSound(Block.soundWoodFootstep).setBlockName("GLight");
+		BLight = new BlockBLight(Config.bLightID, 11).setHardness(0.2F).setLightValue(0.8F).setStepSound(Block.soundWoodFootstep).setBlockName("BLight");
+		RLight = new BlockRLight(Config.rLightID, 12).setHardness(0.2F).setLightValue(0.8F).setStepSound(Block.soundWoodFootstep).setBlockName("RLight");
 
-		Bells = new BlockBells(158, 13).setHardness(0.5F).setStepSound(Block.soundClothFootstep).setBlockName("Bells");
-		Stocking = new BlockStockings(159 ,14).setHardness(0.5F).setStepSound(Block.soundClothFootstep).setBlockName("Stocking");
-		Wreath = new BlockBells(160, 15).setHardness(0.5F).setStepSound(Block.soundClothFootstep).setBlockName("Wreath");
+		Bells = new BlockBells(Config.bellsID, 13).setHardness(0.5F).setStepSound(Block.soundClothFootstep).setBlockName("Bells");
+		Stocking = new BlockStockings(Config.stockID, 14).setHardness(0.5F).setStepSound(Block.soundClothFootstep).setBlockName("Stocking");
+		Wreath = new BlockBells(Config.wreathID, 15).setHardness(0.5F).setStepSound(Block.soundClothFootstep).setBlockName("Wreath");
 
 		SSuit = EnumHelper.addArmorMaterial("SSuit", 5, new int[]{1, 3, 2, 1}, 15);
-		Boots = (new SSuit(5001, SSuit, 3, 3)).setIconCoord(4, 0).setItemName("Boots");
-		Helmet = (new SSuit(5002, SSuit, 3, 0)).setIconCoord(1, 0).setItemName("Helmer");
-		Plate = (new SSuit(5003, SSuit, 3, 1)).setIconCoord(2, 0).setItemName("Plate");
-		Legs = (new SSuit(5004, SSuit, 3, 2)).setIconCoord(3, 0).setItemName("Legs");
+		Boots = (new SSuit(Config.bootsID, SSuit, 3, 3)).setIconCoord(4, 0).setItemName("Boots");
+		Helmet = (new SSuit(Config.helmetID, SSuit, 3, 0)).setIconCoord(1, 0).setItemName("Helmer");
+		Plate = (new SSuit(Config.plateID, SSuit, 3, 1)).setIconCoord(2, 0).setItemName("Plate");
+		Legs = (new SSuit(Config.legsID, SSuit, 3, 2)).setIconCoord(3, 0).setItemName("Legs");
 
 
 		GameRegistry.registerBlock(Lights);
