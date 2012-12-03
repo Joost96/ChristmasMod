@@ -47,6 +47,9 @@ public class ChristmasMod {
 	public static Item Candy;
 	public static Item Gingerbread;
 	public static Item Dough;
+	
+	public static Item GiftTag;
+	
 	public static CreativeTabs TabChrist;
 	public static EnumArmorMaterial SSuit;
 	public static boolean SetSnow;
@@ -114,6 +117,9 @@ public class ChristmasMod {
 		Helmet = (new SSuit(Config.helmetID, SSuit, 3, 0)).setIconCoord(1, 0).setItemName("Helmer");
 		Plate = (new SSuit(Config.plateID, SSuit, 3, 1)).setIconCoord(2, 0).setItemName("Plate");
 		Legs = (new SSuit(Config.legsID, SSuit, 3, 2)).setIconCoord(3, 0).setItemName("Legs");
+		
+		GiftTag = (new ItemGiftTag(Config.tagID)).setIconCoord(3, 0).setItemName("GiftTag");
+		
 
 
 		GameRegistry.registerBlock(Lights);
@@ -146,6 +152,8 @@ public class ChristmasMod {
 		LanguageRegistry.addName(Candy, "Candy");
 		LanguageRegistry.addName(Dough, "Dough");
 		LanguageRegistry.addName(Gingerbread, "Gingerbread");
+		
+		LanguageRegistry.addName(GiftTag, "Gift Tag");
 
 		LanguageRegistry.addName(new ItemStack(PresentS,1,0), "Small Present");
 		LanguageRegistry.addName(new ItemStack(PresentS,1,1), "Small Present");
@@ -203,7 +211,8 @@ public class ChristmasMod {
 
 		GameRegistry.addSmelting(Dough.shiftedIndex, new ItemStack(Gingerbread), 0.1F); 
 		GameRegistry.addShapelessRecipe(new ItemStack(Dough), new ItemStack(Item.sugar), new ItemStack(Item.wheat));
-		GameRegistry.addShapelessRecipe(new ItemStack(Chocolate), new ItemStack(Item.dyePowder, 1, 3), new ItemStack(Item.dyePowder, 1, 3));
+		GameRegistry.addShapelessRecipe(new ItemStack(Chocolate), new ItemStack(Item.dyePowder), new ItemStack(Item.dyePowder));
+		GameRegistry.addShapelessRecipe(new ItemStack(GiftTag), new ItemStack(Item.paper), new ItemStack(Item.silk));
 	}
 	@ServerStarting
 	public void serverStarting(FMLServerStartingEvent event)
@@ -212,6 +221,14 @@ public class ChristmasMod {
 		ICommandManager commandManager = server.getCommandManager();
 		ServerCommandManager serverCommandManager = ((ServerCommandManager) commandManager); 
 		addCommands(serverCommandManager);
+	}
+	
+	public static boolean isClient()
+	{
+		if (proxy instanceof ClientProxy)
+			return true;
+		else
+			return false;
 	}
 
 
