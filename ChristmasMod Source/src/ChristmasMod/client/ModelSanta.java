@@ -26,62 +26,48 @@ public class ModelSanta extends ModelBase
     ModelRenderer leftarm;
     ModelRenderer rightleg;
     ModelRenderer leftleg;
-    ModelRenderer Neck;
-    ModelRenderer Shape1;
   
   public ModelSanta()
   {
     textureWidth = 128;
     textureHeight = 64;
     
-      head = new ModelRenderer(this, 0, 0);
-      head.addBox(-4F, -9F, -4F, 8, 8, 8);
+      head = new ModelRenderer(this, 0, 48);
+      head.addBox(-4F, -8F, -4F, 8, 8, 8);
       head.setRotationPoint(0F, 0F, 1F);
       head.setTextureSize(128, 64);
       head.mirror = true;
       setRotation(head, 0F, 0F, 0F);
-      body = new ModelRenderer(this, 0, 44);
+      body = new ModelRenderer(this, 0, 1);
       body.addBox(-4F, 0F, -2F, 8, 12, 7);
       body.setRotationPoint(0F, 0F, -1F);
       body.setTextureSize(128, 64);
       body.mirror = true;
       setRotation(body, 0F, 0F, 0F);
-      rightarm = new ModelRenderer(this, 40, 16);
+      rightarm = new ModelRenderer(this, 96, 0);
       rightarm.addBox(-3F, -2F, -2F, 4, 12, 4);
       rightarm.setRotationPoint(-5F, 2F, 0F);
       rightarm.setTextureSize(128, 64);
       rightarm.mirror = true;
       setRotation(rightarm, 0F, 0F, 0F);
-      leftarm = new ModelRenderer(this, 40, 16);
+      leftarm = new ModelRenderer(this, 96, 0);
       leftarm.addBox(-1F, -2F, -2F, 4, 12, 4);
       leftarm.setRotationPoint(5F, 2F, 0F);
       leftarm.setTextureSize(128, 64);
       leftarm.mirror = true;
       setRotation(leftarm, 0F, 0F, 0F);
-      rightleg = new ModelRenderer(this, 0, 16);
+      rightleg = new ModelRenderer(this, 112, 0);
       rightleg.addBox(-2F, 0F, -2F, 4, 12, 4);
       rightleg.setRotationPoint(-2F, 12F, 0F);
       rightleg.setTextureSize(128, 64);
       rightleg.mirror = true;
       setRotation(rightleg, 0F, 0F, 0F);
-      leftleg = new ModelRenderer(this, 0, 16);
+      leftleg = new ModelRenderer(this, 112, 0);
       leftleg.addBox(-2F, 0F, -2F, 4, 12, 4);
       leftleg.setRotationPoint(2F, 12F, 0F);
       leftleg.setTextureSize(128, 64);
       leftleg.mirror = true;
       setRotation(leftleg, 0F, 0F, 0F);
-      Neck = new ModelRenderer(this, 32, 0);
-      Neck.addBox(0F, 0F, 0F, 6, 1, 5);
-      Neck.setRotationPoint(-3F, -1F, -2F);
-      Neck.setTextureSize(128, 64);
-      Neck.mirror = true;
-      setRotation(Neck, 0F, 0F, 0F);
-      Shape1 = new ModelRenderer(this, 16, 16);
-      Shape1.addBox(0F, 0F, 0F, 8, 2, 0);
-      Shape1.setRotationPoint(-4F, -1F, -3F);
-      Shape1.setTextureSize(128, 64);
-      Shape1.mirror = true;
-      setRotation(Shape1, 0F, 0F, 0F);
   }
   
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -94,21 +80,17 @@ public class ModelSanta extends ModelBase
     leftarm.render(f5);
     rightleg.render(f5);
     leftleg.render(f5);
-    Neck.render(f5);
-    Shape1.render(f5);
   }
 
 
   public void renderModel(float f1)
   {
-  Shape1.render(f1);
   head.render(f1);
   body.render(f1);
   rightarm.render(f1);
   leftarm.render(f1);
   rightleg.render(f1);
   leftleg.render(f1);
-  Neck.render(f1);
   }
   
   private void setRotation(ModelRenderer model, float x, float y, float z)
