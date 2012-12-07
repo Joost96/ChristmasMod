@@ -32,6 +32,9 @@ public class Config
 	    public static int plateID;
 	    public static int legsID;
 	    public static int tagID;
+	    public static int openDay;
+	    public static int openMonth;
+	    public static boolean disableTime;
 	    public static int configurationProperties()
 	    {
 	            configuration.load();
@@ -58,6 +61,9 @@ public class Config
 	            plateID = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_ITEM, "SantaChest", 5003).value);
 	            legsID = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_ITEM, "SantaLegs", 5004).value);
 	            tagID = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_ITEM, "GiftTag", 5010).value);
+	            openDay = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_GENERAL, "OpenDate", 12).value);
+	            openMonth = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_GENERAL, "OpenMonth", 25).value);
+	            disableTime = configuration.get(Configuration.CATEGORY_GENERAL, "DisableTime", false).getBoolean(false);
 	            configuration.save();
 	            return starID;
 	    }

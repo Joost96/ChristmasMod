@@ -63,6 +63,7 @@ public class ChristmasMod {
 	public void load(FMLInitializationEvent event)
 	{
 		ClientProxy.registerRenderInformation();
+		ChristmasAchievments.register();
 
 		MinecraftForge.EVENT_BUS.register(new CommandEventHandler());
 		LanguageRegistry.instance().addStringLocalization("entity.Santa.name", "en_US", "Santa");
@@ -127,7 +128,7 @@ public class ChristmasMod {
 		GameRegistry.registerBlock(BLight);
 		GameRegistry.registerBlock(RLight);
 		
-		GameRegistry.registerTileEntity(TileEntityPresentS.class, "PresentS");
+		GameRegistry.registerTileEntity(TileEntityPresent.class, "Present");
 		GameRegistry.registerBlock(PresentS, ItemPresentS.class);
 		GameRegistry.registerBlock(PresentM, ItemPresentM.class);
 		GameRegistry.registerBlock(PresentB, ItemPresentB.class);

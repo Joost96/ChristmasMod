@@ -55,7 +55,7 @@ public class BlockPresentS extends BlockContainer {
 	}
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-		return new TileEntityPresentS();
+		return new TileEntityPresent();
 	}
 	// public String idDropped(int par1, Random par2Random, int par3)
 	//    {
