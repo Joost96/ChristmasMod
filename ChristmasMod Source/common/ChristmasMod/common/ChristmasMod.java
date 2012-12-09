@@ -23,6 +23,7 @@ public class ChristmasMod {
 	public static MinecraftServer server;
 	public static NBTTagCompound worldData;
 	
+	public static Block DTree;
 	public static Block Star;
 	public static Block PresentS;
 	public static Block PresentM;
@@ -62,36 +63,20 @@ public class ChristmasMod {
 	@Init
 	public void load(FMLInitializationEvent event)
 	{
-		ClientProxy.registerRenderInformation();
-		ChristmasAchievments.register();
+		proxy.registerRenderInformation();
+		//ChristmasAchievments.register();
 
 		MinecraftForge.EVENT_BUS.register(new CommandEventHandler());
 		LanguageRegistry.instance().addStringLocalization("entity.Santa.name", "en_US", "Santa");
 		EntityRegistry.registerGlobalEntityID(EntitySanta.class, "Santa", ModLoader.getUniqueEntityId(), 11 ,115);
 		
 		TabChrist = new TabChrist(12, "ChristmasMod");
-		BiomeGenBase.swampland.temperature = 0.0F;
-		BiomeGenBase.beach.temperature = 0.0F;
-		BiomeGenBase.desert.temperature = 0.0F;
-		BiomeGenBase.desertHills.temperature = 0.0F;
-		BiomeGenBase.forest.temperature = 0.0F;
-		BiomeGenBase.forestHills.temperature = 0.0F;
-		BiomeGenBase.jungle.temperature = 0.0F;
-		BiomeGenBase.jungleHills.temperature = 0.0F;
-		BiomeGenBase.mushroomIsland.temperature = 0.0F;
-		BiomeGenBase.mushroomIslandShore.temperature = 0.0F;
-		BiomeGenBase.ocean.temperature = 0.0F;
-		BiomeGenBase.plains.temperature = 0.0F;
-		BiomeGenBase.river.temperature = 0.0F;
-		BiomeGenBase.taiga.temperature = 0.0F;
-		BiomeGenBase.taigaHills.temperature = 0.0F;
-		BiomeGenBase.extremeHills.temperature = 0.0F;
-		BiomeGenBase.extremeHillsEdge.temperature = 0.0F;
 
 		TickRegistry.registerTickHandler(new CommonTickHandler(), Side.SERVER);
 
 		Star = (BlockStar)(new BlockStar(Config.starID, 17)).setHardness(0.0F).setLightValue(.7F).setStepSound(Block.soundClothFootstep).setBlockName("Star");
-
+		DTree = new BlockDTree(Config.DTreeID).setHardness(3F).setStepSound(Block.soundWoodFootstep).setBlockName("Decorative Tree");
+		
 		Chocolate = new ItemCandy(Config.chocoID, 4, true).setIconCoord(16, 0).setItemName("Chocolate");
 		CandyCane = new ItemCandy(Config.caneID, 8, true).setIconCoord(18, 0).setItemName("CandyCane");
 		Candy = new ItemCandy(Config.candyID, 2, true).setIconCoord(17, 0).setItemName("Candy");
@@ -128,7 +113,9 @@ public class ChristmasMod {
 		GameRegistry.registerBlock(BLight);
 		GameRegistry.registerBlock(RLight);
 		
+		GameRegistry.registerTileEntity(TileDTree.class, "DTree");
 		GameRegistry.registerTileEntity(TileEntityPresent.class, "Present");
+		GameRegistry.registerBlock(DTree);
 		GameRegistry.registerBlock(PresentS, ItemPresentS.class);
 		GameRegistry.registerBlock(PresentM, ItemPresentM.class);
 		GameRegistry.registerBlock(PresentB, ItemPresentB.class);
@@ -154,6 +141,7 @@ public class ChristmasMod {
 		LanguageRegistry.addName(Dough, "Dough");
 		LanguageRegistry.addName(Gingerbread, "Gingerbread");
 		
+		LanguageRegistry.addName(DTree, "Decorative Tree");
 		LanguageRegistry.addName(GiftTag, "Gift Tag");
 
 		LanguageRegistry.addName(new ItemStack(PresentS,1,0), "Small Present");

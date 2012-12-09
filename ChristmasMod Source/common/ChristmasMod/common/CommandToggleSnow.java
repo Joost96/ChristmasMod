@@ -1,7 +1,10 @@
 package ChristmasMod.common;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.CommandBase;
 import net.minecraft.src.ICommandSender;
+import net.minecraft.src.WorldInfo;
+import net.minecraft.src.WorldServer;
 
 public class CommandToggleSnow  extends CommandBase
 {
@@ -10,15 +13,7 @@ public class CommandToggleSnow  extends CommandBase
     {
         return "togglesnow";
     }
-
-    /**
-     * Return the required permission level for this command.
-     */
-	//@Override
-   // public int getRequiredPermissionLevel()
-   // {
-    //    return 5;
-   // }
+	
 	public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
     {
     	return true;
@@ -27,7 +22,7 @@ public class CommandToggleSnow  extends CommandBase
 	@Override
 	public void processCommand(ICommandSender par1ICommandSender, String[] var2) {
 		this.togglesnow();
-        notifyAdmins(par1ICommandSender, "Eternal snow is toggled", new Object[0]);
+        notifyAdmins(par1ICommandSender, "Eternal snow is set to "+ ChristmasMod.SetSnow ,  new Object[0]);
 		
 	}
 
@@ -35,8 +30,11 @@ public class CommandToggleSnow  extends CommandBase
 		if (ChristmasMod.SetSnow == true)
 		{
 		ChristmasMod.SetSnow = false;
+		WorldServer var4 = MinecraftServer.getServer().worldServers[0];
+		WorldInfo var5 = var4.getWorldInfo();
+		var5.setRaining(false);
 		}
-		if (ChristmasMod.SetSnow == false)
+		else if (ChristmasMod.SetSnow == false)
 		{
 		ChristmasMod.SetSnow = true;
 		}

@@ -10,6 +10,7 @@ public class Config
 		static Configuration configuration = new Configuration(new File(new File(".").getAbsolutePath(), "config/Christmas.cfg"));
 		public static int starID = configurationProperties();
 		public static int chocoID;
+		public static int DTreeID;
 		public static int caneID;
 		public static int candyID;
 		public static int doughID;
@@ -61,6 +62,7 @@ public class Config
 	            plateID = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_ITEM, "SantaChest", 5003).value);
 	            legsID = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_ITEM, "SantaLegs", 5004).value);
 	            tagID = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_ITEM, "GiftTag", 5010).value);
+	            DTreeID = Integer.parseInt(configuration.getBlock(Configuration.CATEGORY_BLOCK, "Decorative Tree", 163).value);
 	            openDay = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_GENERAL, "OpenDate", 12).value);
 	            openMonth = Integer.parseInt(configuration.getItem(Configuration.CATEGORY_GENERAL, "OpenMonth", 25).value);
 	            disableTime = configuration.get(Configuration.CATEGORY_GENERAL, "DisableTime", false).getBoolean(false);
