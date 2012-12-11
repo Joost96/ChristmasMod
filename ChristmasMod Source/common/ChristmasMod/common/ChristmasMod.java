@@ -104,7 +104,7 @@ public class ChristmasMod {
 		Plate = (new SSuit(Config.plateID, SSuit, 3, 1)).setIconCoord(2, 0).setItemName("Plate");
 		Legs = (new SSuit(Config.legsID, SSuit, 3, 2)).setIconCoord(3, 0).setItemName("Legs");
 		
-		GiftTag = (new ItemGiftTag(Config.tagID)).setIconCoord(3, 0).setItemName("GiftTag");
+		//GiftTag = (new ItemGiftTag(Config.tagID)).setIconCoord(3, 0).setItemName("GiftTag");
 		
 
 
@@ -142,7 +142,7 @@ public class ChristmasMod {
 		LanguageRegistry.addName(Gingerbread, "Gingerbread");
 		
 		LanguageRegistry.addName(DTree, "Decorative Tree");
-		LanguageRegistry.addName(GiftTag, "Gift Tag");
+		//LanguageRegistry.addName(GiftTag, "Gift Tag");
 
 		LanguageRegistry.addName(new ItemStack(PresentS,1,0), "Small Present");
 		LanguageRegistry.addName(new ItemStack(PresentS,1,1), "Small Present");
@@ -201,7 +201,7 @@ public class ChristmasMod {
 		GameRegistry.addSmelting(Dough.shiftedIndex, new ItemStack(Gingerbread), 0.1F); 
 		GameRegistry.addShapelessRecipe(new ItemStack(Dough), new ItemStack(Item.sugar), new ItemStack(Item.wheat));
 		GameRegistry.addShapelessRecipe(new ItemStack(Chocolate), new ItemStack(Item.dyePowder), new ItemStack(Item.dyePowder));
-		GameRegistry.addShapelessRecipe(new ItemStack(GiftTag), new ItemStack(Item.paper), new ItemStack(Item.silk));
+		//GameRegistry.addShapelessRecipe(new ItemStack(GiftTag), new ItemStack(Item.paper), new ItemStack(Item.silk));
 	}
 	@ServerStarting
 	public void serverStarting(FMLServerStartingEvent event)
